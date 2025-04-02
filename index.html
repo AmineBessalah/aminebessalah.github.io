@@ -1,386 +1,251 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Univers de Savoir</title>
-  <link rel="icon" href="images/favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- Materialize CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <style>
-    /* Fond de page (.bg) avec flou et marges dynamiques */
-    .bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url("images/space_bg.jpg") no-repeat center center fixed;
-      background-size: cover;
-      opacity: 0.6;
-      filter: blur(10px);
-      z-index: -2;
-      transition: filter 0.3s ease-out, left 0.3s ease-out, right 0.3s ease-out;
-    }
-    /* Barre de progression */
-    #progressContainer {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 7px;
-      background: rgba(0,0,0,0.1);
-      z-index: 1200;
-    }
-    #progressBar {
-      height: 7px;
-      width: 0%;
-      background: linear-gradient(90deg, #a29bfe, #0984e3);
-    }
-    /* Corps de page */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Roboto', sans-serif;
-      color: #e0e0e0;
-      text-align: center;
-      background-color: #000;
-      position: relative;
-    }
-    /* Conteneur Parallax fixe */
-    .parallax-container {
-      height: 200px;
-      position: relative;
-      overflow: hidden;
-    }
-    .parallax-container::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 50px;
-      background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
-      pointer-events: none;
-    }
-    /* Overlay pour le contenu principal */
-    .overlay {
-      background: rgba(0, 0, 0, 0.75);
-      padding: 20px;
-      position: relative;
-      z-index: 1;
-      transition: transform 0.3s ease-out;
-    }
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 10px;
-    }
-    .section {
-      padding: 50px 0;
-    }
-    h2, h3 {
-      margin-bottom: 20px;
-    }
-    h2 {
-      color: #a29bfe;
-    }
-    /* Sous-titre et étoiles animées */
-    #subtitle-container {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 40px;
-    }
-    /* Le sous-titre est caché au départ */
-    #subtitle {
-      font-size: 1.8rem;
-      opacity: 0;
-      color: #a29bfe;
-      margin: 10px 0 0;
-      transition: opacity 0.5s ease-out;
-    }
-    .star {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 16px;
-      color: #fff;
-      animation: starBurst 2s ease-out infinite;
-      pointer-events: none;
-    }
-    @keyframes starBurst {
-      0% { transform: translate(-50%, -50%); opacity: 1; }
-      100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))); opacity: 0; }
-    }
-    p, a, li {
-      color: #dfe6e9;
-    }
-    a {
-      text-decoration: none;
-    }
-    /* Carousel d'images et vidéo */
-    .carousel .carousel-item {
-      width: 100%;
-    }
-    .carousel .carousel-item img,
-    .carousel .carousel-item video {
-      width: 100%;
-      max-height: 300px;
-      object-fit: contain;
-    }
-    /* Bouton personnalisé */
-    .btn-custom {
-      background: linear-gradient(45deg, #74b9ff, #0984e3);
-    }
-    /* Bouton scroll-to-top */
-    #scrollTopBtn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-      display: none;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 50%;
-      font-size: 18px;
-      color: #fff;
-      cursor: pointer;
-    }
-    /* Profils fixes en haut à gauche */
-    .fixed-profiles {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      z-index: 1100;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-    .fixed-profiles .profile-thumb {
-      width: 50px;
-      height: 50px;
-      cursor: pointer;
-      border: 2px solid #a29bfe;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    /* Style des modales */
-    .modal {
-      max-width: 90%;
-      width: 90%;
-      max-height: 90vh;
-      margin: auto;
-      border-radius: 8px;
-    }
-    .modal-content {
-      padding: 0;
-    }
-    .modal-content img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    @keyframes fadeInZoom {
-      0% { opacity: 0; transform: scale(0.5); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-    .modal {
-      animation: fadeInZoom 0.5s ease-out;
-    }
-    /* Adaptation du conteneur parallax sur mobiles */
-    @media only screen and (max-width: 600px) {
-      .parallax-container {
-        height: 150px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Énigme de l'Ombre</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <!-- Fond dynamique -->
-  <div class="bg"></div>
-  
-  <!-- Barre de progression -->
-  <div id="progressContainer">
-    <div id="progressBar"></div>
-  </div>
+<body class="dark-theme">
+    <!-- Lumière mystérieuse -->
+    <div id="mysterious-light">
+        <i class="fas fa-star"></i>
+    </div>
 
-  <!-- Bouton Scroll-to-top -->
-  <button id="scrollTopBtn" class="btn btn-custom" title="Haut de page">↑</button>
+    <!-- Modal -->
+    <div class="modal fade" id="lightModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-body text-center p-5">
+                    <h3>"Une lueur d'espoir persiste, même dans le cœur le plus sombre."</h3>
+                    <p class="mt-3">- Anakin Skywalker</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <!-- Profils fixes en haut à gauche -->
-  <div class="fixed-profiles">
-    <img class="profile-thumb modal-trigger responsive-img" src="images/img1.jpg" alt="Profil 1" data-target="modal-profile1">
-    <img class="profile-thumb modal-trigger responsive-img" src="images/img2.jpg" alt="Profil 2" data-target="modal-profile2">
-  </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+        <div class="container">
+            <a class="navbar-brand" href="#">L'Énigme</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown me-2">
+                        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown">
+                            <span class="fi fi-fr"></span> FR
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><span class="fi fi-fr me-2"></span>Français</a></li>
+                            <li><a class="dropdown-item" href="#"><span class="fi fi-gb me-2"></span>English</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#about">Ombre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#journey">Voyage</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#knowledge">Savoir</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Écho</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-  <!-- Modale pour l'image profile 1 -->
-  <div id="modal-profile1" class="modal">
-    <div class="modal-content">
-      <img src="images/img1.jpg" alt="Profil 1">
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close btn btn-custom">Fermer</a>
-    </div>
-  </div>
-  <!-- Modale pour l'image profile 2 -->
-  <div id="modal-profile2" class="modal">
-    <div class="modal-content">
-      <img src="images/img2.jpg" alt="Profil 2">
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close btn btn-custom">Fermer</a>
-    </div>
-  </div>
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-3 fw-bold">Je suis l'Ombre entre les Mondes</h1>
+                    <p class="lead mt-4">Un voyageur des dimensions, un observateur du temps, une étincelle dans le vide cosmique.</p>
+                </div>
+            </div>
+        </div>
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+    </header>
 
-  <!-- Conteneur Parallax (fixe à 200px) -->
-  <div class="parallax-container">
-    <div class="parallax">
-      <img src="images/parallax1.webp" alt="Fond de l'univers">
-    </div>
-  </div>
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">L'Ombre qui Persiste</h2>
+                    <p class="mt-4">Né dans les limbes de la réalité, j'ai traversé les couches de l'existence comme une particule quantique, à la fois présent et absent, tangible et insaisissable.</p>
+                    <p>Mon identité est un puzzle dont j'ai moi-même perdu les pièces. Seuls 1% sont révélés ici, comme des étoiles dans un ciel nocturne.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="mystery-box p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="me-3"><i class="fas fa-question-circle fa-2x"></i></div>
+                            <div>
+                                <h4 class="mb-0">Saviez-vous ?</h4>
+                                <small>Un fragment de vérité</small>
+                            </div>
+                        </div>
+                        <p>J'ai négocié avec les ombres qui hantent les interstices du réel, là où le temps se déchire et où les lois humaines n'ont plus cours...
+                            Ce savoir m'a coûté des nuits sans sommeil et des jours hantés par leurs murmures...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Contenu principal -->
-  <div class="overlay">
-    <!-- Section d'introduction -->
-    <div class="container section" id="intro-section">
-      <h2>Bienvenue dans l'Univers du Savoir</h2>
-      <div id="subtitle-container">
-        <h3 id="subtitle">Avec Amine Bessalah</h3>
-        <span class="star" style="--dx: -20px; --dy: -30px; animation-delay: 0s;">✦</span>
-        <span class="star" style="--dx: 20px; --dy: -25px; animation-delay: 0.5s;">✦</span>
-        <span class="star" style="--dx: -15px; --dy: 25px; animation-delay: 1s;">✦</span>
-        <span class="star" style="--dx: 25px; --dy: 15px; animation-delay: 1.5s;">✦</span>
-      </div>
-      <p>Explorez les profondeurs de l'espace et découvrez le mystique personnage incarnant la connaissance.</p>
-    </div>
-    
-    <!-- Carousel de photos et vidéo -->
-    <div class="container">
-      <div class="carousel carousel-slider center">
-        <!-- Première slide : Vidéo "science.mp4" -->
-        <div class="carousel-item">
-          <video class="responsive-video" controls autoplay muted loop>
-            <source src="images/science.mp4" type="video/mp4">
-            Votre navigateur ne supporte pas la vidéo.
-          </video>
+    <!-- Journey Section -->
+    <section id="journey" class="py-5 bg-dark2">
+        <div class="container py-5">
+            <h2 class="section-title text-center mb-5">À Travers le Temps et la Matière Noire</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>L'Enfance de l'Ombre</h3>
+                        <p>Les premiers pas dans un monde qui ne comprenait pas. L'apprentissage de la douleur avant celui de l'amour.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Les Années de Conquête</h3>
+                        <p>Les arts martiaux, les sciences occultes, les technologies secrètes. Un savoir trop vaste pour un seul esprit.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>La Chute</h3>
+                        <p>L'amour perdu, les trahisons, les nuits à combattre des démons visibles et invisibles.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>La Renaissance</h3>
+                        <p>Comme une supernova, la destruction précède la création. Je ne suis plus ce que j'étais, mais pas encore ce que je serai.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- Autres slides : images -->
-        <div class="carousel-item">
-          <img class="responsive-img" src="images/ecole.jpg" alt="Ecole">
+    </section>
+
+    <!-- Knowledge Section -->
+    <section id="knowledge" class="py-5">
+        <div class="container py-5">
+            <h2 class="section-title text-center mb-5">Les Arcanes du Savoir</h2>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="knowledge-card h-100">
+                        <div class="icon-box"><i class="fas fa-atom"></i></div>
+                        <h3>Sciences Obscures</h3>
+                        <p>De la radiofréquence aux particules quantiques, un savoir qui défie la logique commune.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="knowledge-card h-100">
+                        <div class="icon-box"><i class="fas fa-fist-raised"></i></div>
+                        <h3>Arts Martiaux</h3>
+                        <p>La boxe thaï, le likido, le karaté - des danses de combat contre les ombres intérieures.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="knowledge-card h-100">
+                        <div class="icon-box"><i class="fas fa-eye"></i></div>
+                        <h3>Visions</h3>
+                        <p>Ceux qui voient au-delà du voile portent toujours un fardeau invisible.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="carousel-item">
-          <img class="responsive-img" src="images/image1.jpg" alt="Image 1">
+    </section>
+
+    <!-- Section "Énigme" -->
+    <section id="contact" class="py-5 bg-dark2">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="section-title mb-4">L'Énigme Est-Elle Résolue ?</h2>
+                    <p class="mb-4">Vous êtes arrivé au bout de cette ombre... mais le voyage ne fait que commencer.</p>
+                    
+                    <div class="mystery-box p-4 mb-5">
+                        <p>Derrière chaque mystère se cache une vérité universelle. Notre application "Nebula Wisdom" est la clé qui ouvre :</p>
+                        <ul class="text-start">
+                            <li>Les portes interdites du savoir occulte</li>
+                            <li>Les chemins vibratoires vers la réussite quantique</li>
+                            <li>Les archives perdues de la connaissance absolue</li>
+                            <li>... et plus encore</li>
+                        </ul>
+                        
+                        <div class="row mt-4 g-3">
+                            <div class="col-md-6">
+                                <a href="#" class="btn btn-dark w-100 py-3">
+                                    <i class="fab fa-android me-2"></i> Version Android
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="#" class="btn btn-dark w-100 py-3">
+                                    <i class="fab fa-apple me-2"></i> Version iOS
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="mt-5 mb-4">Devenez un Guerrier du Savoir</h3>
+                    <p class="mb-4">Nebula Wisdom n'est pas une application, c'est une arme :</p>
+                    
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="feature-box p-3">
+                                <i class="fas fa-atom fa-2x mb-3"></i>
+                                <p>Accès direct aux sources les plus rares</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-box p-3">
+                                <i class="fas fa-compass fa-2x mb-3"></i>
+                                <p>Cartographie vibratoire de la réussite</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-box p-3">
+                                <i class="fas fa-key fa-2x mb-3"></i>
+                                <p>Clés pour déverrouiller tout domaine de connaissance</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="mt-5">"Celui qui contrôle l'information contrôle l'univers"</p>
+
+                    <p class="mt-5">Vous passez à côté de 90% des opportunités parce que vous ne savez pas les voir. Nebula Wisdom vous greffe un nouvel œil - celui qui repère les failles dans le réel. Le choix est simple : rester un spectateur, ou arracher votre part de pouvoir.</p>
+                </div>
+            </div>
         </div>
-        <div class="carousel-item">
-          <img class="responsive-img" src="images/image2.jpg" alt="Image 2">
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="mb-0">L'Ombre entre les Mondes &copy; <span id="year"></span><br>
+                    Tous les chemins mènent à l'infini</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/amine-bessalah/" target="_blank" class="me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="https://www.instagram.com/a.a.bessalah/" target="_blank" class="me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="https://www.facebook.com/mental.pro.71/" target="_blank" class="me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="mailto:aminebessalah@protonmail.com" class="text-nowrap"><i class="fas fa-envelope fa-lg me-1"></i> aminebessalah@protonmail.com</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="carousel-item">
-          <img class="responsive-img" src="images/image3.jpg" alt="Image 3">
-        </div>
-        <div class="carousel-item">
-          <img class="responsive-img" src="images/image4.webp" alt="Image 4">
-        </div>
-        <div class="carousel-item">
-          <img class="responsive-img" src="images/image5.webp" alt="Image 5">
-        </div>
-        <div class="carousel-item">
-          <img class="responsive-img" src="images/image6.jpg" alt="Image 6">
-        </div>
-        <div class="carousel-item">
-          <img class="responsive-img" src="images/imagex.webp" alt="Image X">
-        </div>
-        <div class="carousel-item">
-          <img class="responsive-img" src="images/nurse.webp" alt="Nurse">
-        </div>
-      </div>
-    </div>
-    
-    <!-- Section À propos -->
-    <div class="container section" id="about">
-      <h3>À propos de moi</h3>
-      <p>
-        Mystique et porteur d’un savoir ancien, j’ai voyagé à travers les galaxies pour recueillir des connaissances millénaires.
-      </p>
-    </div>
-    
-    <!-- Section Parcours -->
-    <div class="container section" id="career">
-      <h3>Mon parcours</h3>
-      <p>
-        Mon périple interstellaire m’a conduit à explorer des mondes inconnus, récoltant les secrets de l’univers et forgeant mon destin dans la lumière des étoiles.
-      </p>
-    </div>
-    
-    <!-- Section Contact -->
-    <div class="container section" id="contact">
-      <h3>Contact</h3>
-      <p>
-        Email: <a href="mailto:aminebessalah@protonmail.com" style="color: #a29bfe;">aminebessalah@protonmail.com</a>
-      </p>
-      <p>
-        LinkedIn: <a href="https://www.linkedin.com/in/amine-bessalah/" target="_blank" style="color: #a29bfe;">LinkedIn</a> | Instagram: <a href="https://www.instagram.com/a.a.bessalah/" target="_blank" style="color: #a29bfe;">Instagram</a>
-      </p>
-      <a class="btn btn-custom" href="#">Me contacter</a>
-    </div>
-  </div>
-  
-  <!-- Scripts Materialize et gestion du scroll -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Initialisation du carousel
-      var carouselElems = document.querySelectorAll('.carousel');
-      M.Carousel.init(carouselElems, {
-        fullWidth: true,
-        indicators: true,
-        duration: 2000
-      });
-      setInterval(function() {
-        var instance = M.Carousel.getInstance(carouselElems[0]);
-        instance.next();
-      }, 2000);
-      
-      // Initialisation des modales
-      var modalElems = document.querySelectorAll('.modal');
-      M.Modal.init(modalElems);
-      
-      // Initialisation du parallax (taille fixe)
-      var parallaxElems = document.querySelectorAll('.parallax');
-      M.Parallax.init(parallaxElems);
-    });
-    
-    // Gestion du scroll
-    window.addEventListener('scroll', function() {
-      var winScroll = document.documentElement.scrollTop || document.body.scrollTop;
-      var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      var scrolled = (winScroll / docHeight) * 100;
-      document.getElementById("progressBar").style.width = scrolled + "%";
-      
-      // Ajustement du flou de l'image de fond (10px en haut -> 0px en bas)
-      var blurVal = 10 * (1 - (winScroll / docHeight));
-      document.querySelector('.bg').style.filter = 'blur(' + blurVal + 'px)';
-      
-      // Ajustement dynamique des marges horizontales de l'image de fond (0 à 20px sur 0-200px de scroll)
-      var margin = Math.min(20, (winScroll / 200) * 20);
-      var bg = document.querySelector('.bg');
-      bg.style.left = margin + "px";
-      bg.style.right = margin + "px";
-      
-      // Bouton scroll-to-top
-      var scrollTopBtn = document.getElementById("scrollTopBtn");
-      scrollTopBtn.style.display = (winScroll > 300) ? "block" : "none";
-      
-      // Gestion de l'opacité du sous-titre "Avec Amine Bessalah"
-      var subtitle = document.getElementById("subtitle");
-      var opacityVal = Math.min(1, winScroll / 200);
-      subtitle.style.opacity = opacityVal;
-    });
-    
-    document.getElementById("scrollTopBtn").addEventListener("click", function() {
-      window.scroll({ top: 0, behavior: 'smooth' });
-    });
-  </script>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
 </body>
 </html>
