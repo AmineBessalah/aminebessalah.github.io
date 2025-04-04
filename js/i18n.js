@@ -62,7 +62,7 @@ const translations = {
         "cosmic.pros.title": "Pour les professionnels :",
         "cosmic.pros.text": "Maîtrisez n'importe quelle compétence...",
         "cosmic.features.title": "🔑 Ce que nous offrons :",
-        "cosmic.features.item1": "Un accès <strong>illimité et gratuit</strong> (pour le moment)",
+        "cosmic.features.item1": "Un accès illimité et gratuit (pour le moment)",
         "cosmic.features.item2": "La bibliothèque de connaissances la plus complète jamais rassemblée",
         "cosmic.features.item3": "Des outils puissants pour apprendre, rechercher et maîtriser n'importe quel sujet",
         "cosmic.features.item4": "Un avantage décisif pour les premiers inscrits",
@@ -71,7 +71,7 @@ const translations = {
         "cosmic.quote2": "\"La connaissance est la seule richesse qui se multiplie quand on la partage.\"",
         "cosmic.download": "👉 Téléchargez dès maintenant et commencez votre voyage",
         "cosmic.note": "(Disponible sur iOS et Android - 100% gratuit pendant la période beta)",
-        "cosmic.unique": "\"Nebula Wisdom va bien au-delà d'un simple stockage de connaissances...\"",
+        "cosmic.unique": "\"Nebula Wisdom va bien au-delà d'un simple stockage de connaissances : c'est un compagnon intelligent qui vous guide pas à pas dans votre apprentissage et votre carrière, tout en vous connectant à une communauté mondiale de profils complémentaires – avec la liberté de rester anonyme ou de révéler votre identité selon vos besoins.\"",
     },
     en: {
         "hero.title": "I am the Shadow Between Worlds",
@@ -135,7 +135,7 @@ const translations = {
         "cosmic.pros.title": "For professionals:",
         "cosmic.pros.text": "Master any skill...",
         "cosmic.features.title": "🔑 What we offer:",
-        "cosmic.features.item1": "<strong>Unlimited free</strong> access (for now)",
+        "cosmic.features.item1": "Unlimited free access (for now)",
         "cosmic.features.item2": "The most comprehensive knowledge library ever assembled",
         "cosmic.features.item3": "Powerful tools to learn, research and master any subject",
         "cosmic.features.item4": "A decisive advantage for early adopters",
@@ -144,7 +144,7 @@ const translations = {
         "cosmic.quote2": "\"Knowledge is the only wealth that multiplies when shared.\"",
         "cosmic.download": "👉 Download now and start your journey",
         "cosmic.note": "(Available on iOS and Android - 100% free during beta)",
-        "cosmic.unique": "\"Nebula Wisdom goes far beyond simple knowledge storage...\""
+        "cosmic.unique": "\"Nebula Wisdom goes far beyond mere knowledge storage: it's an intelligent companion that guides you step-by-step through your learning and career journey, while connecting you to a global community of complementary profiles – with the freedom to remain anonymous or reveal your identity as needed.\""
     }
 };
 
