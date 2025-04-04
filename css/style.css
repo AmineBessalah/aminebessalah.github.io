@@ -510,3 +510,286 @@ footer {
         animation: none;
     }
 }
+
+/* Bouton Découvrir */
+.discover-btn {
+    position: relative;
+    display: inline-block;
+    padding: 12px 30px;
+    color: var(--light);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    background: transparent;
+    border: 2px solid var(--primary);
+    border-radius: 50px;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.5s var(--transition-type);
+  }
+  
+  .discover-text {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .discover-orb {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.5s var(--transition-type);
+  }
+  
+  .discover-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--primary);
+    border-radius: 50px;
+    opacity: 0;
+  }
+  
+  .discover-btn:hover {
+    color: var(--darker);
+    box-shadow: 0 0 15px var(--primary);
+  }
+  
+  .discover-btn:hover .discover-orb {
+    opacity: 1;
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+  }
+  
+  .discover-btn:hover .discover-pulse {
+    animation: discoverPulse 2s infinite;
+  }
+  
+  @keyframes discoverPulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    70% {
+      transform: scale(1.3);
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Container cosmique */
+.cosmic-scroll-container {
+    position: relative;
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 2.5rem;
+    border-radius: 15px;
+    border: 1px solid rgba(108, 92, 231, 0.5);
+    background: rgba(15, 15, 30, 0.85);
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(108, 92, 231, 0.2);
+  }
+  
+  /* Fond d'étoiles */
+  .stars-bg, .twinkling-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  @keyframes shootingStar {
+    0% {
+      transform: translateX(0) translateY(0);
+      opacity: 0;
+      width: 0;
+    }
+    10% {
+      opacity: 1;
+      width: 100px;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(300px) translateY(-150px);
+      opacity: 0;
+      width: 0;
+    }
+  }
+  
+  /* Style des étoiles */
+  .stars-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(circle at 20% 30%, white 0.3px, transparent 0.8px),
+      radial-gradient(circle at 80% 50%, white 0.3px, transparent 0.8px);
+    background-size: 200px 200px;
+    z-index: 1;
+    animation: twinkle 8s ease-in-out infinite;
+  }
+  
+  .twinkling-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .twinkling-bg::before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: -100px;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, white, transparent);
+    animation: shootingStar 8s linear infinite;
+    animation-delay: 2s;
+  }
+  
+  .twinkling-bg::after {
+    content: "";
+    position: absolute;
+    top: 45%;
+    left: -100px;
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    animation: shootingStar 10s linear infinite;
+    animation-delay: 5s;
+  }
+  
+  /* Contenu */
+  .scroll-content {
+    position: relative;
+    z-index: 2;
+    color: var(--light);
+  }
+  
+  .scroll-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+    text-align: center;
+  }
+  
+  .scroll-content h4 {
+    font-size: 1.3rem;
+    margin: 1.8rem 0 1rem;
+    color: var(--accent);
+  }
+  
+  .cosmic-quote {
+    font-style: italic;
+    text-align: center;
+    margin: 1.5rem 0;
+    color: rgba(255, 255, 255, 0.8);
+    position: relative;
+    padding: 0 1rem;
+  }
+  
+  .highlight-text {
+    font-weight: 600;
+    color: var(--primary);
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 1.8rem 0;
+  }
+  
+  .small-text {
+    font-size: 0.9rem;
+    text-align: center;
+    opacity: 0.8;
+  }
+  
+  /* Zone de texte scrollable */
+  .scrollable-text {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 15px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+  }
+  
+  .scrollable-text::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollable-text::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 1px solid transparent;
+  }
+  
+  .scrollable-text p {
+    margin-bottom: 1.2rem;
+    line-height: 1.7;
+  }
+  
+  .scrollable-text ul {
+    padding-left: 1.8rem;
+    margin: 1.2rem 0;
+  }
+  
+  .scrollable-text li {
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 1.2rem;
+  }
+  
+  .scrollable-text li::before {
+    content: "✧";
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+  }
+  
+  .unique-feature {
+    background: rgba(108, 92, 231, 0.1);
+    border-left: 3px solid var(--accent);
+    padding: 1rem;
+    margin: 2rem 0;
+    border-radius: 0 5px 5px 0;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .cosmic-scroll-container {
+      margin: 1.5rem;
+      padding: 1.8rem;
+    }
+    
+    .scroll-content h3 {
+      font-size: 1.5rem;
+    }
+    
+    .scrollable-text {
+      max-height: 350px;
+    }
+  }
